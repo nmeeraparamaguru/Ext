@@ -5,7 +5,11 @@ Ext.define('myapp3.view.main.center.CenterView', {
 	layout: 'card',
 	items:[{
 		xtype:'panel',
+		//viewModel: {
+		//	type: 'test'
+		//},
 		fullscreen:true,
+
 	//layout:'hbox',
 	defaultType:'textfield',
 	defaults:{
@@ -17,7 +21,8 @@ Ext.define('myapp3.view.main.center.CenterView', {
 	},
 {
 	fieldLabel:'First Name',
-	name:'firstName'
+	name:'firstName',
+	//bind: '{firstname}'
 },
 {
 	fieldLabel: 'Last Name',
@@ -35,7 +40,44 @@ Ext.define('myapp3.view.main.center.CenterView', {
 	text:'Submit',
 	handler:function(){
 		Ext.Msg.alert('message added');
-	}
+		Ext.Ajax.request({
+				url:' http://localhost:3000/posts/4',
+				method: 'DELETE',
+				success : function(response)
+				{
+					Ext.Msg.alert("deleted");
+
+				},
+				failure : function(response){
+					Ext.Msg.alert("deleted already");
+				}
+		})
+		//Ext.Ajax.request({
+		//	url:' http://localhost:3000/posts',
+			//method: 'Post',
+		//	jsonData:{
+			//	name:'Nandhini'
+			//},
+		//	success: function (response){
+			//	Ext.Msg.alert(response);
+		//	},
+			//failure: function (response){
+				//Ext.Msg.alert(response);
+		//	}
+//	})
+
+}
+		//Ext.Ajax.request({
+		//	url:' http://localhost:3000/posts',
+		//	success:function (response){
+			//	const responseBody = Ext.decode(response.responseText)
+			//	console.log(responseBody);
+		//	}
+	//	})
+
+		
+	
+	
 }]
 	}]
 });
